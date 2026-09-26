@@ -1,133 +1,126 @@
-import java.util.Scanner;
+import CLASE_5.*;
+import CLASE_6.*;
 
-class Transporte {
-    public static void main(String[] args) {
+public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+    //Tema 1: Clases, objetos y constructores
 
-        System.out.println("¿Cuantos vehiculos desea ingresar?");
-        int cantidadVehiculos = sc.nextInt();
+    Persona persona1 = new Persona("Juan", 12345678, 30);
+    Persona persona2 = new Persona("Maria", 87654321, 25);
+    Persona persona3 = new Persona("Pedro", 11223344, 40);
+    persona1.toString();
+    persona2.toString();
+    persona3.toString();
 
-        Vehiculo[] vehiculos = new Vehiculo [cantidadVehiculos];
+    Empleado empleado1 = new Empleado("Juan", 1001);
+    Empleado empleado2 = new Empleado("Maria", 1002);
+    Empleado empleado3 = new Empleado("Pedro", 1003);
+    Empleado empleado4 = new Empleado("Ana", 1004);
 
-        for (int i = 0; i < cantidadVehiculos; i++) {
-            System.out.println("Ingrese el tipo de vehiculo (1. Auto o 2. Moto):");
-            int tipoVehiculo = sc.nextInt();
+    empleado1.empleados[0] = empleado1;
+    empleado1.empleados[1] = empleado2;
+    empleado1.empleados[2] = empleado3;
+    empleado1.empleados[3] = empleado4;
 
-            System.out.println("Ingrese la marca del vehiculo:");
-            String marca = sc.next();
+    System.out.println("Legajo menor: " + empleado1.calcularLegajoMenor());
+    System.out.println("Legajo mayor: " + empleado1.calcularLegajoMayor());
 
-            System.out.println("Ingrese el modelo del vehiculo:");
-            String modelo = sc.next();
 
-            System.out.println("Ingrese el año del vehiculo:");
-            int anio = sc.nextInt();
+    //Tema 2: Encapsulamiento y validación en setters
 
-            System.out.println("Ingrese el precio del vehiculo:");
-            double precio = sc.nextDouble();
+    CuentaBancaria cuenta1 = new CuentaBancaria("Juan", 123456, 1000.0);
+    System.out.println("Titular: " + cuenta1.getTitular());
+    System.out.println("Número de cuenta: " + cuenta1.getNumeroCuenta());
+    System.out.println("Saldo: " + cuenta1.getSaldo());
+    cuenta1.depositar(500.0);
+    System.out.println("Saldo después del depósito: " + cuenta1.getSaldo());
+    cuenta1.extraer(200.0);
+    System.out.println("Saldo después de la extracción: " + cuenta1.getSaldo());
+        /*/ dispara exception
+        cuenta1.extraer(10000);
+        dispara exception
+        cuenta1.depositar(-1); /*/
 
-            if (tipoVehiculo == 1) {
-                System.out.println("Ingrese el impuesto por rueda del auto:");
-                double impuestoPorRueda = sc.nextDouble();
+    // Tema 3: Sobrecarga de constructores y composición de objetos
+    // Ejercicio 1
+    CuentaBancaria cuenta2 = new CuentaBancaria("Maria", 654321);
+    System.out.println("Titular: " + cuenta2.getTitular());
+    System.out.println("Número de cuenta: " + cuenta2.getNumeroCuenta());
+    System.out.println("Saldo: " + cuenta2.getSaldo()); //saldo en $0
 
-                vehiculos[i] = new Auto(marca, modelo, anio, precio, impuestoPorRueda);
-            } else if (tipoVehiculo == 2) {
-                vehiculos[i] = new Moto(marca, modelo, anio, precio);
-            } else {
-                System.out.println("Tipo de vehiculo no valido. Intente nuevamente.");
-                i--;
-            }
+    Vehiculo vehiculo1 = new Vehiculo("Toyota", "Corolla", 20000.0);
+    Vehiculo vehiculo2 = new Vehiculo("Honda", "Civic", 220);
+    Vehiculo vehiculo3 = new Vehiculo("Ford", "Focus", 18000.0);
+
+
+    Vehiculo[] vehiculos = new Vehiculo[3];
+    vehiculos[0] = vehiculo1;
+    vehiculos[1] = vehiculo2;
+    vehiculos[2] = vehiculo3;
+
+    // Ejercicio 2
+    Concesionaria concesionaria = new Concesionaria("Allen Motors", vehiculos);
+    concesionaria.agregarVehiculo(vehiculo1);
+    concesionaria.agregarVehiculo(vehiculo2);
+    concesionaria.agregarVehiculo(vehiculo3);
+    System.out.println(concesionaria.buscarPorMarca("Toyota"));
+    System.out.println("Valor total del stock: $" + concesionaria.valorTotalStock());
+
+    // CLASE 6 — PILARES DE LA POO: HERENCIA
+    // Tema 2: Sobreescritura de métodos y reutilización con super
+    // Ejercicio 1
+    EmpleadoAsalariado empleadoAsalariado = new EmpleadoAsalariado("Juan", 1001, 2000.0, 500.0);
+    EmpleadoPorHoras empleadoPorHoras = new EmpleadoPorHoras("Maria", 1002, 40, 20.0);
+
+    System.out.println("Sueldo del empleado asalariado: $" + empleadoAsalariado.calcularSueldo());
+    System.out.println("Sueldo del empleado por horas: $" + empleadoPorHoras.calcularSueldo());
+
+    // Ejercicio 2
+    Auto auto1 = new Auto("Toyota", "Corolla", 20000.0, 4);
+    Moto moto1 = new Moto("Honda", "CBR500R", 2020, 500);
+
+    auto1.toString();
+    moto1.toString();
+
+    //Tema 3: Arreglos polimórficos y binding dinámico
+    // Ejercicio 1
+
+    Empleado[] empleados = new Empleado[2];
+    empleados[0] = empleadoAsalariado;
+    empleados[1] = empleadoPorHoras;
+
+    for (Empleado empleado : empleados) {
+        if (empleado == null) {
+            break;
         }
-
-        for (int i = 0; i < cantidadVehiculos; i++) {
-            if (vehiculos[i] != null) {
-            System.out.println(vehiculos[i].toString());
-            }
-        }
+        double sueldoEmpleado = empleado.calcularSueldo();
+        System.out.println("Nombre: " + empleado.getNombre() + ", Legajo: " + empleado.getLegajo() + ", Sueldo: $" + sueldoEmpleado);
     }
-}
+     /*/ El arreglo se recorre porque Empleado actua como superclase, permitiendo que se pueda almacenar
+    tanto EmpleadoAsalariado como EmpleadoPorHoras en el mismo arreglo.
+    El binding dinámico permite que se llame al método calcularSueldo() /*/
 
-class Vehiculo {
-    private String marca;
-    private String modelo;
-    private int puertas;
-    private int anio;
-    private double precio;
-    private int cantidadRuedas;
-    private double impuestoPorRueda;
+    // Ejercicio 2
 
-    public Vehiculo(String marca, String modelo, int anio, int puertas, double precio, double impuestoPorRueda) {
-        this.marca = marca;
-        this.modelo = modelo;
-        this.anio = anio;
-        this.puertas = puertas;
-        this.precio = precio;
-        this.impuestoPorRueda = impuestoPorRueda;
+    Figura figuras[] = new Figura [6];
 
-    }
+    Figura circulo1 = new Circulo(5.0);
+    Figura circulo2 = new Circulo(2.5);
 
-    public Vehiculo(String marca, String modelo, int anio, int puertas, double precio) {
-        this.marca = marca;
-        this.modelo = modelo;
-        this.anio = anio;
-        this.puertas = puertas;
-        this.precio = precio;
-    }
+    Figura rectangulo1 = new Rectangulo(4.0, 6.0);
+    Figura rectangulo2 = new Rectangulo(5.0, 8.0);
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
+    Figura triangulo1 = new Triangulo(3.0, 4.0, 5.0);
+    Figura triangulo2 = new Triangulo(6.0, 8.0, 10.0);
 
-    public void setImpuestoPorRueda(double impuestoPorRueda) {
-        this.impuestoPorRueda = impuestoPorRueda;
-    }
+    figuras[0] = circulo1;
+    figuras[1] = circulo2;
+    figuras[2] = rectangulo1;
+    figuras[3] = rectangulo2;
+    figuras[4] = triangulo1;
+    figuras[5] = triangulo2;
 
-    public double getImpuestoCantRuedas() {
-        this.impuestoPorRueda = ((impuestoPorRueda * this.cantidadRuedas) * this.precio ) / 100;
-        return impuestoPorRueda;
-    }
+    double resultado = Figura.calcularAreaTotal(figuras);
 
-    public double getPrecio() {
-        return this.precio;
-    }
-
-    public void setCantidadRuedas(int cantidadRuedas) {
-        this.cantidadRuedas = cantidadRuedas;
-    }
-
-    public double getPrecioImpuesto() {
-        return this.precio + this.impuestoPorRueda;
-    }
-
-    @Override
-    public String toString() {
-        return  marca + " " + modelo + ", " + anio + ", " + puertas + " Puertas, U$s " + this.getPrecioImpuesto();
-    }
-
-    public String getDatosBasicos() {
-        return  marca + " " + modelo + ", " + anio ;
-    }
-}
-
-class Moto extends Vehiculo {
-
-    public Moto(String marca, String modelo, int anio, double precio) {
-        super(marca, modelo, anio, 0, precio, 0);
-        super.setCantidadRuedas(2);
-    }
-
-    @Override
-    public String toString() {
-        return  super.getDatosBasicos() + ", U$s " + this.getPrecioImpuesto();
-    }
-
-}
-
-class Auto extends Vehiculo {
-
-    public Auto(String marca, String modelo, int anio, double precio, double impuestoPorRueda) {
-        super(marca, modelo, anio, 4, precio, impuestoPorRueda);
-        super.setCantidadRuedas(4);
-    }
 
 }
