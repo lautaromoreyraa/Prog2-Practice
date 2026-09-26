@@ -1,38 +1,38 @@
-package CLASE_25_09_2026;
+package CLASE_6;
 
-abstract class Figura {
+public abstract class Figura {
     private String nombre;
 
     public Figura(String nombre) {
         this.nombre = nombre;
     }
-}
 
-class Circulo extends Figura {
-    private final double radio;
+    public Figura(){}
 
-    public Circulo(double radio) {
-        super("Círculo");
-        this.radio = radio;
+    public String getNombre() {
+        return nombre;
     }
 
-    public double calcularArea() {
-        return Math.PI * radio * radio;
-    }
-}
-
-// Subclase concreta
-class Rectangulo extends Figura {
-    private final double base;
-    private final double altura;
-
-    public Rectangulo(double base, double altura) {
-        super("Rectángulo");
-        this.base = base;
-        this.altura = altura;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public double calcularArea() {
-        return base * altura;
+    double calcularArea (){
+        return 0.0;
+    }
+
+    public static double calcularAreaTotal (Figura[] figuras) {
+        double areaTotal = 0.0;
+
+        for (Figura figura : figuras) {
+            if (figura == null) {
+                break;
+            }
+            areaTotal = figura.calcularArea();
+            System.out.println("Área del: " + figura.nombre + areaTotal);
+        }
+        return areaTotal;
     }
 }
+
+
