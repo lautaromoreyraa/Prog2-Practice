@@ -4,9 +4,9 @@ public class Empleado {
     private String nombre;
     private int legajo;
 
-    Empleado[] empleados = new Empleado[4];
+    public Empleado[] empleados = new Empleado[4];
 
-    Empleado (String nombre, int legajo) {
+    public Empleado(String nombre, int legajo) {
         this.nombre = nombre;
         this.legajo = legajo;
     }
@@ -27,11 +27,11 @@ public class Empleado {
         this.legajo = legajo;
     }
 
-    double calcularSueldo() {
+    public double calcularSueldo() {
         return 0.0;
     }
 
-    int calcularLegajoMenor() {
+    public int calcularLegajoMenor() {
         for (Empleado empleado : empleados) {
             if (empleado != null) {
                 int legajoMenor = empleado.getLegajo();
@@ -46,7 +46,7 @@ public class Empleado {
         return 0;
     }
 
-    int calcularLegajoMayor() {
+    public int calcularLegajoMayor() {
         for (Empleado empleado : empleados) {
             if (empleado != null) {
                 int legajoMayor = empleado.getLegajo();
@@ -61,5 +61,4 @@ public class Empleado {
         return 0;
     }
 }
-
 

@@ -5,13 +5,13 @@ public class CuentaBancaria {
     private int numeroCuenta;
     private double saldo;
 
-    CuentaBancaria(String titular, int numeroCuenta, double saldo) {
+    public CuentaBancaria(String titular, int numeroCuenta, double saldo) {
         this.titular = titular;
         this.numeroCuenta = numeroCuenta;
         this.saldo = saldo;
     }
 
-    CuentaBancaria(String titular, int numeroCuenta) {
+    public CuentaBancaria(String titular, int numeroCuenta) {
         this.titular = titular;
         this.numeroCuenta = numeroCuenta;
         this.saldo = 0.0;
@@ -47,14 +47,14 @@ public class CuentaBancaria {
         this.saldo = saldo;
     }
 
-    void depositar (double monto) {
+    public void depositar(double monto) {
         if (monto <= 0) {
             throw new IllegalArgumentException("El monto a depositar debe ser mayor que cero.");
         }
         saldo += monto;
     }
 
-    void  extraer (double monto) {
+    public void  extraer(double monto) {
         if (monto <= 0 || monto > saldo) {
             throw new IllegalArgumentException("El monto a extraer debe ser mayor que cero y menor o igual al saldo disponible.");
         }
