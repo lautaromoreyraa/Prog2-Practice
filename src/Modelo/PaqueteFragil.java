@@ -3,7 +3,7 @@ package Modelo;
 public class PaqueteFragil extends Paquete{
     private String nivelProteccion;
 
-    PaqueteFragil(String codigoTrack, double peso, String destino, String nivelProteccion) {
+    public PaqueteFragil(String codigoTrack, double peso, String destino, String nivelProteccion) {
         super(codigoTrack, peso, destino);
         if (nivelProteccion.equalsIgnoreCase("Bajo")
                 || nivelProteccion.equalsIgnoreCase("Medio")
@@ -36,7 +36,7 @@ public class PaqueteFragil extends Paquete{
         } else if (nivelProteccion.equalsIgnoreCase("Alto")) {
             costoFinal = (30 * COSTO_ENVIO_POR_KG / 100) * getPeso();
         }
-        return 0;
+        return costoFinal;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class PaqueteFragil extends Paquete{
         return detalle;
     }
 
-    
+
 
 
 }

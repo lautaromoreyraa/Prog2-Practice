@@ -3,7 +3,7 @@ package Modelo;
 public class PaqueteEstandar extends Paquete {
     private int diasEstimados;
 
-    PaqueteEstandar(String codigoTrack, double peso, String destino, int diasEstimados) {
+    public PaqueteEstandar(String codigoTrack, double peso, String destino, int diasEstimados) {
         super(codigoTrack, peso, destino);
         this.diasEstimados = diasEstimados;
     }
@@ -26,4 +26,6 @@ public class PaqueteEstandar extends Paquete {
         }
         return false;
     }
+
+
 }

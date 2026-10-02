@@ -5,6 +5,8 @@ public abstract class Paquete implements Enviable {
     private double peso;
     private String destino;
 
+    public static final double COSTO_ENVIO_POR_KG = 1000;
+
     Paquete(String codigoTrack, double peso, String destino) {
         if (codigoTrack == null || codigoTrack.isEmpty()) {
             throw new IllegalArgumentException("El código de tracking no puede ser nulo.");
