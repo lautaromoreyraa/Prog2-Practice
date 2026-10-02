@@ -1,7 +1,7 @@
-package App;
+package ejercicio_1.App;
 
-import Modelo.Enviable;
-import Modelo.Paquete;
+import ejercicio_1.Modelo.Enviable;
+import ejercicio_1.Modelo.Paquete;
 
 import java.util.ArrayList;
 

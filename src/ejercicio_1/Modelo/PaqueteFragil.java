@@ -1,4 +1,4 @@
-package Modelo;
+package ejercicio_1.Modelo;
 
 public class PaqueteFragil extends Paquete{
     private String nivelProteccion;

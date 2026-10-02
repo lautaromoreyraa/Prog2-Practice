@@ -1,4 +1,4 @@
-package Modelo;
+package ejercicio_1.Modelo;
 
 public abstract class Paquete implements Enviable {
     private String codigoTrack;

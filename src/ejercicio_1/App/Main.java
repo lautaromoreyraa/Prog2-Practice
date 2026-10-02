@@ -1,14 +1,14 @@
-package App;
+package ejercicio_1.App;
 
 public class Main {
     public static void main(String[] args) {
         CentroLogistico centroLogistico = new CentroLogistico();
 
         // Crear paquetes
-        Modelo.PaqueteEstandar paquete1 = new Modelo.PaqueteEstandar("TRACK001", 10, "Ciudad A", 5);
-        Modelo.PaqueteEstandar paquete2 = new Modelo.PaqueteEstandar("TRACK002", 20, "Ciudad B", 7);
-        Modelo.PaqueteFragil paquete3 = new Modelo.PaqueteFragil("TRACK003", 5, "Ciudad C", "Alto");
-        Modelo.PaqueteFragil paquete4 = new Modelo.PaqueteFragil("TRACK004", 8, "Ciudad D", "Medio");
+        ejercicio_1.Modelo.PaqueteEstandar paquete1 = new ejercicio_1.Modelo.PaqueteEstandar("TRACK001", 10, "Ciudad A", 5);
+        ejercicio_1.Modelo.PaqueteEstandar paquete2 = new ejercicio_1.Modelo.PaqueteEstandar("TRACK002", 20, "Ciudad B", 7);
+        ejercicio_1.Modelo.PaqueteFragil paquete3 = new ejercicio_1.Modelo.PaqueteFragil("TRACK003", 5, "Ciudad C", "Alto");
+        ejercicio_1.Modelo.PaqueteFragil paquete4 = new ejercicio_1.Modelo.PaqueteFragil("TRACK004", 8, "Ciudad D", "Medio");
 
         // Registrar paquetes en el centro logístico
         centroLogistico.registrarPaquete(paquete1);

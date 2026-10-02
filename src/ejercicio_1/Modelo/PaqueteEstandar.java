@@ -1,4 +1,4 @@
-package Modelo;
+package ejercicio_1.Modelo;
 
 public class PaqueteEstandar extends Paquete {
     private int diasEstimados;
